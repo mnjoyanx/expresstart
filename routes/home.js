@@ -3,7 +3,7 @@ const router = Router()
 
 
 router.get('/', (req, res) => {
-    res.render('../views/pages/index.hbs', {
+    res.render('pages/index', {
         title: 'Home',
         isHome: true
     })

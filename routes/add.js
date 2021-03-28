@@ -3,7 +3,7 @@ const router = Router()
 
 
 router.get('/', (req, res) => {
-    res.render('pages/books', {
+    res.render('pages/add', {
         title: 'Books',
         isAdd: true
     })

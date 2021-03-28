@@ -2,7 +2,7 @@ const {Router} = require('express')
 const router = Router()
 
 router.get('/', (req, res) => {
-    res.render('../views/pages/books.hbs', {
+    res.render('pages/books', {
         title: 'Books',
         isBooks: true
     })
