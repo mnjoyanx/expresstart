@@ -2,6 +2,10 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const path = require('path')
 
+const homeRoute = require('./routes/home.js')
+const booksRoute = require('./routes/books.js')
+const addRoute = require('./routes/add.js')
+
 const app = express()
 
 const hbs = exphbs.create({
@@ -17,13 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // routes
-app.get('/', (req, res) => {
-    res.render('index')
-})
+app.use('/', homeRoute)
 
-app.get('/about', (req, res) => {
-    res.render('about')
-})
+app.use('/books', booksRoute)
+
+app.use('/add', addRoute)
+
 // routes
 
 
