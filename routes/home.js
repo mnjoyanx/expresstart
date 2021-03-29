@@ -1,4 +1,4 @@
-const {Router} = require('express')
+const { Router } = require('express')
 const router = Router()
 
 
@@ -8,5 +8,10 @@ router.get('/', (req, res) => {
         isHome: true
     })
 })
+
+router.get('/api', (req, res) => {
+    res.json(35354)
+})
+
 
 module.exports = router
