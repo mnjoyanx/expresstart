@@ -54,6 +54,12 @@ class Book {
         })
        
     } 
+
+    static async getCurrentBook(id) {
+
+        const bookId = await this.getAll()
+        return bookId.find(item => item.id == id)
+    }
 }
 
 module.exports = Book
