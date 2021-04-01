@@ -41,15 +41,27 @@
       </a>
       {{/if }}
 
-{{#if isAdd  }}
-      <a href="/add" class="block bg-gray-700 p-3 mt-4 h-full lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+      {{#if isAdd }}
+      <a href="/add"
+        class="block bg-gray-700 p-3 mt-4 h-full lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
         Add Book
       </a>
       {{else }}
       <a href="/add" class="block  p-3 mt-4 h-full lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
         Add Book
       </a>
-      {{/if  }}
+      {{/if }}
+
+      {{#if isCard }}
+      <a href="/card"
+        class="block bg-gray-700 p-3 mt-4 h-full lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+        Card
+      </a>
+      {{else }}
+      <a href="/card" class="block  p-3 mt-4 h-full lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+        Card
+      </a>
+      {{/if }}
     </div>
     <div>
       <a href="#"

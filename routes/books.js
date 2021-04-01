@@ -21,4 +21,18 @@ router.get('/:id', async (req, res) => {
     })
 })
 
+
+router.get('/:id/edit', async (req, res) => {
+    const book = await Book.getCurrentBook(req.params.id)
+    res.render('./pages/editbook', {
+        title: `Edit ${book.title}`,
+        book
+    })
+})
+
+router.post('/edit', async (req, res) => {
+    await Book.updateBook(req.body)
+    res.redirect('/books')
+})
+
 module.exports = router

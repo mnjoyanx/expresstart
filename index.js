@@ -7,6 +7,7 @@ const cors = require('cors')
 const homeRoute = require('./routes/home.js')
 const booksRoute = require('./routes/books.js')
 const addRoute = require('./routes/add.js')
+const cardRoute = require('./routes/card.js')
 
 const app = express()
 
@@ -29,6 +30,8 @@ app.use('/', homeRoute)
 app.use('/books', booksRoute)
 
 app.use('/add', addRoute)
+
+app.use('/card', cardRoute)
 
 // routes
 
