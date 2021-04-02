@@ -4,3 +4,14 @@ document.querySelectorAll('.price').forEach(item => {
         style: 'currency'
     }).format(item.textContent)
 })
+
+const card = document.getElementById('main')
+
+if (card) {
+    card.addEventListener('click', evnt => {
+        console.log(evnt.target)
+        if (evnt.target.classList.contains('js-remove')) {
+            console.log('ok')
+        }
+    })
+}

@@ -17,7 +17,7 @@ router.post('/add', async(req, res) => {
     const currentBook = await Book.getCurrentBook(req.body.id)
     await Card.addToCard(currentBook)
 
-    res.redirect('/books')
+    res.redirect('/card')
 })
 
 module.exports = router
