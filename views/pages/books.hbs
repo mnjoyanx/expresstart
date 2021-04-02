@@ -20,6 +20,7 @@
         <a href="/books/{{id}}/edit" class="bg-yellow-600 text-center w-20 py-4 hover:bg-yellow-700 hover:text-white">Edit</a>
         <form action="/card/add" method="POST">
         <button class="w-20 py-1 bg-blue-600 text-white hover:bg-blue-700 text-center hover:text-white">Add to Card</button>
+        <input type="hidden" name="id" value="{{id}}">
       </form>
       </div>
     </div>   
