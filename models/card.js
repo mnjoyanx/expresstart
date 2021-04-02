@@ -19,13 +19,31 @@ class Card {
 
     static async addToCard(book) {
         const data = await Card.fetch()
-        const candidate = data.card.find(item => item.id === book.id)
+        const idx = data.card.findIndex(item => item.id === book.id)
+        const candidate = data.card[idx]
 
         if (candidate) {
-
+            candidate.count++
+                data.card[idx] = candidate
         } else {
-
+            book.count = 1
+            data.card.push(book)
         }
+
+        data.price += +book.price
+
+        return new Promise((res, rej) => {
+            fs.writeFile(path.join(__dirname, '../data/card.json'),
+                JSON.stringify(data),
+                err => {
+                    if (err) {
+                        rej(err)
+                    } else {
+                        res()
+                    }
+                }
+            )
+        })
 
     }
 }
