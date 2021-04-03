@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { all } = require('../routes/books')
 
 class Card {
     static fetch() {
@@ -46,6 +47,34 @@ class Card {
         })
 
     }
+
+    static async removeFromcard (id) {
+        const allBooks = await Card.fetch()
+        
+        const idx = allBooks.card.findIndex(item => item.id === id)
+        const book = allBooks.card[idx]
+
+        if(book.count === 1 ) {
+            allBooks.card = allBooks.card.filter(item => item.id !== id)
+        } else {
+            allBooks.card[idx].count--
+        }
+
+        allBooks.price -= +book.price
+
+        return new Promise((res, rej) => {
+            fs.writeFile(path.join(__dirname, '../data/card.json'),
+                JSON.stringify(allBooks),
+                err => {
+                    if(err) {
+                        rej(err)
+                    } else {
+                        res(allBooks)
+                    }
+                }
+            )
+        })
+    } 
 }
 
 module.exports = Card
