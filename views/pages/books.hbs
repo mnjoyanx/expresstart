@@ -2,12 +2,12 @@
 
 
 {{#if books.length}}
-<div class="mt-12 flex justify-between">
+<div class="mt-12 flex flex-wrap justify-between">
 {{#each books  }}   
-   <div class="mb-4">
+   <div class="mb-4 ml-2">
   <div class="flex flex-col justify-between w-72 sm:w-96 h-96 bg-white bg-center text-gray-800 shadow-md overflow-hidden cursor-pointer" style="background-image:url('https://placeimg.com/480/480/any')">
     <div class="flex justify-between items-center ml-4 pr-8">
-      <a href="/books/{{ id }}" target="_new" class="bg-red-600 text-white bg-opacity-95 shadow px-2 py-1 flex items-center font-bold text-xs rounded">Some information</a>
+      <a href="/books/{{ _id }}" target="_blank" class="bg-red-600 text-white bg-opacity-95 shadow px-2 py-1 flex items-center font-bold text-xs rounded">Some information</a>
     </div>
     <div class="bg-white bg-opacity-95 shadow-md rounded-r-xl p-4 flex justify-between mr-4 mb-8">
       <div class="flex flex-col items-center">

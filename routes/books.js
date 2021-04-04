@@ -1,10 +1,9 @@
-const { json } = require('body-parser')
 const {Router} = require('express')
 const router = Router()
 const Book = require('../models/books')
 
 router.get('/', async (req, res) => {
-    const books = await Book.getAll()
+    const books = await Book.find().lean()
     res.render('pages/books', {
         title: 'Books',
         isBooks: true,
@@ -12,8 +11,8 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.get('/:id', async (req, res) => {
-    const book = await Book.getCurrentBook(req.params.id)
+router.get('/:_id', async (req, res) => {
+    const book = await Book.findById(req.params._id).lean()
     res.render('./pages/book', {
         layout: 'empty',
         title: `book ${book.title}`,
@@ -23,7 +22,7 @@ router.get('/:id', async (req, res) => {
 
 
 router.get('/:id/edit', async (req, res) => {
-    const book = await Book.getCurrentBook(req.params.id)
+    const book = await Book.findById(req.params.id)
     res.render('./pages/editbook', {
         title: `Edit ${book.title}`,
         book
@@ -31,7 +30,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 router.post('/edit', async (req, res) => {
-    await Book.updateBook(req.body)
+    await Book.findByIdAndUpdate(req.body.id, req.body).lean()
     res.redirect('/books')
 })
 
