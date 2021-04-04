@@ -1,21 +1,34 @@
-const Card = require('../models/card')
 const Book = require('../models/books')
 const { Router } = require('express')
 const router = Router()
 
+function mapCardItems(card) {
+    return card.items.map(item => ({
+        ...item.bookId._doc, count: item.count
+    }))
+}
+
+function calculatePrice(books) {
+    return books.reduce((total, book) => {
+        return total += book.price * book.count
+    }, 0)
+}
+
 router.get('/', async(req, res) => {
-    const card = await Card.fetch()
+    const user = await req.user.populate('card.items.bookId').execPopulate()
+
+    const books = mapCardItems(user.card)
     res.render('./pages/card.hbs', {
         title: 'Card',
         isCard: true,
-        price: card.price,
-        books: card.card
+        price: calculatePrice(books),
+        books: books
     })
 })
 
 router.post('/add', async(req, res) => {
-    const currentBook = await Book.getCurrentBook(req.body.id)
-    await Card.addToCard(currentBook)
+    const currentBook = await Book.findById(req.body.id)
+    await req.user.addToCard(currentBook)
 
     res.redirect('/card')
 })
