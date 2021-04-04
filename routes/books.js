@@ -21,8 +21,8 @@ router.get('/:_id', async (req, res) => {
 })
 
 
-router.get('/:id/edit', async (req, res) => {
-    const book = await Book.findById(req.params.id)
+router.get('/:_id/edit', async (req, res) => {
+    const book = await Book.findById(req.params._id).lean()
     res.render('./pages/editbook', {
         title: `Edit ${book.title}`,
         book
@@ -30,7 +30,7 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 router.post('/edit', async (req, res) => {
-    await Book.findByIdAndUpdate(req.body.id, req.body).lean()
+    await Book.findByIdAndUpdate(req.body._id, req.body)
     res.redirect('/books')
 })
 
