@@ -3,7 +3,8 @@ const router = Router()
 const Book = require('../models/books')
 
 router.get('/', async (req, res) => {
-    const books = await Book.find().lean()
+    const books = await Book.find().populate('userId', 'email name').lean()
+    console.log(books)
     res.render('pages/books', {
         title: 'Books',
         isBooks: true,

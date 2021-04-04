@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const path = require('path')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const User = require('./models/user')
 
 const cors = require('cors')
 const homeRoute = require('./routes/home.js')
@@ -20,6 +21,18 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
+
+
+app.use(async (req, res, next) => {
+    try {
+        const user = await User.findById('606a022a5c044cef35309e7f')
+        req.user = user
+        next()
+        
+    } catch(err) {
+        console.log(err)
+    }
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }))
@@ -44,6 +57,18 @@ async function start() {
     try {
         const url = `mongodb+srv://mnjoyan:NERV71cP4TeMR3b2@cluster0.sc0pu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
         await mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+
+        const candidate = await User.findOne()
+
+        if(!candidate) {
+            const user = new User({
+                email: 'tigranmnjoyan@gmail.com',
+                name: 'Tigran',
+                card: {items: []}
+            })
+
+            await user.save()
+        }
         app.listen(PORT, () => {
             console.log(`server is running on port ${PORT}`)
         })
