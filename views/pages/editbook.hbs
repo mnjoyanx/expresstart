@@ -11,7 +11,7 @@
                         <input type="text" value="{{book.title}}" name="title" id="title" placeholder="title" required
                             class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                     </div>
-                    
+
                     <div class="mb-6">
                         <label for="pirce" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Price</label>
                         <input type="number" value="{{book.price}}" name="price" id="pirce" placeholder="price" required
@@ -26,13 +26,20 @@
 
                     <div class="mb-6 flex justify-end">
                         <button type="submit"
-                            class="btn-lg px-12 py-4 text-white bg-yellow-600 rounded-md focus:bg-yellow-600 focus:outline-none">👉
+                            class="btn-lg px-12 py-4 text-white bg-indigo-600 rounded-md focus:bg-yellow-600 focus:outline-none">👉
                             Edit Book</button>
                         <input type="hidden" value="{{book._id}}" name="_id">
 
                     </div>
                     <p class="text-base text-center text-gray-400" id="result">
                     </p>
+                </form>
+
+                <form action="/books/remove" method="POST">
+                    <button type="submit"
+                        class="btn-lg px-12 py-4 text-white bg-red-600 rounded-md focus:bg-yellow-600 focus:outline-none">👉
+                        Delete Book</button>
+                        <input type="hidden" value="{{book._id}}" name="_id">
                 </form>
             </div>
         </div>
