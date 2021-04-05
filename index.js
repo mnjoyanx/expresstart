@@ -25,7 +25,7 @@ app.set('views', 'views')
 
 app.use(async (req, res, next) => {
     try {
-        const user = await User.findById('606a022a5c044cef35309e7f')
+        const user = await User.findById('606ab0f615cd943438952881')
         req.user = user
         next()
         
@@ -55,7 +55,7 @@ const PORT = process.env.PORT || 5000
 
 async function start() {
     try {
-        const url = `mongodb+srv://mnjoyan:NERV71cP4TeMR3b2@cluster0.sc0pu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+        const url = `mongodb+srv://mnjoyan:0UAFiBZN0EurxF8W@cluster0.1bwis.mongodb.net/bookStore?retryWrites=true&w=majority`
         await mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 
         const candidate = await User.findOne()

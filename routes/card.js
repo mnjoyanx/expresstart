@@ -33,9 +33,14 @@ router.post('/add', async(req, res) => {
     res.redirect('/card')
 })
 
-router.delete('/remove/:id', async (req, res) => {
-    const card = await Card.removeFromcard(req.params.id)
-    res.json(card)
+router.delete('/remove/:_id', async (req, res) => {
+        await req.user.removeFromCard(req.params._id)
+
+        const user = await req.user.populate('card.items.bookId').execPopulate()
+        const items = mapCardItems(user.card)
+
+        const card = {items, price: calculatePrice(items)}
+        res.json(card)
 })
 
 module.exports = router

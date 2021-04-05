@@ -9,16 +9,16 @@ const card = document.getElementById('main')
 
 if (card) {
     card.addEventListener('click', evnt => {
-        let id = evnt.target.dataset.id
-        console.log(id, 'id')
+        let _id = evnt.target.dataset.id
         if (evnt.target.classList.contains('js-remove')) {
-            fetch('/card/remove/' + id, {
+            fetch('/card/remove/' + _id, {
                 method: 'delete'
             }).then(res => {
                 return res.json()
             }).then(book => {
-                if(book.card.length) {
-                    const html = book.card.map(item => {
+                console.log(book, 'boook')
+                if(book.items.length) {
+                    const html = book.items.map(item => {
                         return `
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                     <td class="py-3 px-6 text-left whitespace-nowrap">
@@ -58,7 +58,7 @@ if (card) {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                 </svg>
                             </div>
-                            <button class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 js-remove" data-id="${item.id}">
+                            <button class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 js-remove" data-id="${item._id}">
                                 remove
                             </button>
                         </div>

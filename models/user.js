@@ -44,4 +44,19 @@ userSchema.methods.addToCard = function(book) {
     return this.save()
 }
 
+
+userSchema.methods.removeFromCard = function(id) {
+    let items = [...this.card.items]
+    const idx = items.findIndex(item => item.bookId.toString() === id.toString())
+
+    if(items[idx].count === 1) {
+        items = items.filter(c => c.bookId.toString() !== id.toString())
+    } else {
+        items[idx].count--
+    }
+
+    this.card = {items}    
+    return this.save()
+    
+} 
 module.exports = model('User', userSchema)
