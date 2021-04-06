@@ -10,6 +10,7 @@ const homeRoute = require('./routes/home.js')
 const booksRoute = require('./routes/books.js')
 const addRoute = require('./routes/add.js')
 const cardRoute = require('./routes/card.js')
+const orderRoute = require('./routes/order')
 
 const app = express()
 
@@ -46,6 +47,8 @@ app.use('/books', booksRoute)
 app.use('/add', addRoute)
 
 app.use('/card', cardRoute)
+
+app.use('/order', orderRoute)
 
 // routes
 
