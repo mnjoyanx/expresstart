@@ -72,6 +72,10 @@
         </div>
     </div>
     <p class="mt-4">Total Price: <strong class="price main">{{price}}</strong></p>
+    
+    <form action="/order" method="POST">
+        <button class="bg-indigo-700 mt-4 px-8 py-2 text-white">Order</button>
+    </form>
 
     {{else}}
     <p class="text-xl">Card is empty</p>
