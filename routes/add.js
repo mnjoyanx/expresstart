@@ -11,14 +11,14 @@ router.get('/', (req, res) => {
 })
 
 
-router.post('/', async (req, res) => {
-    const book = new Book({title: req.body.title, price: req.body.price, img: req.body.img, userId: req.user._id})
- 
-    try {
-        await book.save()    
-        res.redirect('/books')  
+router.post('/', async(req, res) => {
+    const book = new Book({ title: req.body.title, price: req.body.price, img: req.body.img, userId: req.user._id })
 
-    } catch(err) {
+    try {
+        await book.save()
+        res.redirect('/books')
+
+    } catch (err) {
         console.log(err)
     }
 })

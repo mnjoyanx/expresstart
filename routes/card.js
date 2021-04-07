@@ -4,7 +4,8 @@ const router = Router()
 
 function mapCardItems(card) {
     return card.items.map(item => ({
-        ...item.bookId._doc, count: item.count
+        ...item.bookId._doc,
+        count: item.count
     }))
 }
 
@@ -30,17 +31,18 @@ router.post('/add', async(req, res) => {
     const currentBook = await Book.findById(req.body.id)
     await req.user.addToCard(currentBook)
 
+
     res.redirect('/card')
 })
 
-router.delete('/remove/:_id', async (req, res) => {
-        await req.user.removeFromCard(req.params._id)
+router.delete('/remove/:_id', async(req, res) => {
+    await req.user.removeFromCard(req.params._id)
 
-        const user = await req.user.populate('card.items.bookId').execPopulate()
-        const items = mapCardItems(user.card)
+    const user = await req.user.populate('card.items.bookId').execPopulate()
+    const items = mapCardItems(user.card)
 
-        const card = {items, price: calculatePrice(items)}
-        res.json(card)
+    const card = { items, price: calculatePrice(items) }
+    res.json(card)
 })
 
 module.exports = router
