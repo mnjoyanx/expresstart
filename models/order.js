@@ -1,20 +1,18 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require('mongoose')
 
 
 const orderSchema = new Schema({
-    books: [
-        {
-            item: {
-                type: Object,
-                required: true
-            },
-            count: {
-                type: Number,
-                required: true
-            }
+    books: [{
+        item: {
+            type: Object,
+            required: true
+        },
+        count: {
+            type: Number,
+            required: true
         }
-    ],
-    
+    }],
+
     user: {
         name: String,
         userId: {

@@ -58,7 +58,7 @@ const PORT = process.env.PORT || 5000
 
 async function start() {
     try {
-        const url = `mongodb+srv://mnjoyan:8WgmUYB4FFVfWbks@cluster0.1bwis.mongodb.net/bookStore?retryWrites=true&w=majority`
+        const url = `mongodb+srv://mnjoyan:qzNNZhzSFsj8uGWR@cluster0.1bwis.mongodb.net/bookStore?retryWrites=true&w=majority`
         await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
         const candidate = await User.findOne()
@@ -72,7 +72,7 @@ async function start() {
 
             await user.save()
         }
-        app.listen(PORT, () => {
+        app.listen(5000, () => {
             console.log(`server is running on port ${PORT}`)
         })
     } catch (err) {
