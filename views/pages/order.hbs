@@ -1,1 +1,35 @@
 <h2>Order page</h2>
+
+
+<div>
+    {{#if orders.length}}
+
+    {{#each orders}}
+    <figure class="bg-gray-100 rounded-xl mb-4 p-2">
+        <img class="w-32 h-32" src="/sarah-dayan.jpg" alt="sdvsdv" width="384" height="512">
+        <div class="pt-6 space-y-4">
+            <blockquote>
+                <p class="text-lg">
+                    Order ID: {{_id}}
+                </p>
+            </blockquote>
+            <figcaption>
+                <div>
+                    <p>User Name1: {{user.userId.name}}</p>
+                    <p>User Email: {{user.userId.email}}</p>
+                </div>
+                <div>
+                   <p>Date: {{date}}</p>
+                </div>
+                <div>
+                    <p class="price">Price: {{price}}</p>
+                </div>
+            </figcaption>
+        </div>
+    </figure>
+    {{/each}}
+
+    {{else}}
+    <p>No Orders yet!</p>
+    {{/if}}
+</div>

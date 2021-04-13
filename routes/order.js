@@ -5,11 +5,21 @@ const router = Router()
 
 
 router.get('/', async(req, res) => {
-    const orders = await Order.findById('60740c71a2b0634305fca9ab')
-    console.log(orders, 'orders')
+    const orders = await Order.find({ 'user.userId': req.user.id }).populate('user.userId')
+
+
     res.render('pages/order.hbs', {
         title: 'Order',
-        isOrder: true
+        isOrder: true,
+        orders: orders.map(item => {
+            return {
+                ...item._doc,
+                price: item.books.reduce((acc, val) => {
+                    return acc += val.count * val.item.price
+                }, 0)
+            }
+
+        })
     })
 })
 
